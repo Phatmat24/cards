@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matthew Fuller | Harmony Labs</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --dark: #082E53; --accent: #168DE2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background: #f2f5f9; color: #1d2733; }
+  .card { max-width: 460px; margin: 0 auto; padding: 32px 22px 48px; }
+  .top { background: #fff; border-radius: 22px; padding: 30px 24px 26px; text-align: center;
+          box-shadow: 0 6px 24px rgba(8, 46, 83, .10); }
+  .logo { max-width: 78%; max-height: 90px; margin: 0 auto 18px; display: block; }
+  h1 { margin: 0; font-size: 30px; color: var(--dark); }
+  .sub { margin: 6px 0 0; color: var(--accent); font-size: 18px; font-weight: 600; }
+  .tag { margin: 10px 0 0; color: #5b6573; font-size: 15px; }
+  .btn { display: block; width: 100%; padding: 16px; border: 0; border-radius: 14px;
+          font-size: 18px; font-weight: 700; text-align: center; text-decoration: none;
+          cursor: pointer; margin-top: 12px; }
+  .primary { background: var(--dark); color: #fff; margin-top: 22px; }
+  .secondary { background: #e8f2fc; color: var(--dark); }
+  .rows { margin-top: 18px; text-align: left; }
+  .rows a { display: flex; gap: 12px; align-items: center; padding: 12px 4px;
+             border-top: 1px solid #edf0f4; color: #1d2733; text-decoration: none; font-size: 16px; }
+  .rows span { width: 64px; color: #5b6573; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  .share { background: #fff; border-radius: 22px; padding: 24px; margin-top: 18px;
+            box-shadow: 0 6px 24px rgba(8, 46, 83, .10); }
+  h2 { margin: 0 0 4px; font-size: 21px; color: var(--dark); }
+  .hint { margin: 0 0 14px; color: #5b6573; font-size: 15px; }
+  label { display: block; font-size: 14px; color: #5b6573; margin: 12px 0 4px; }
+  input, textarea { width: 100%; padding: 13px; font-size: 17px; border: 1px solid #cfd7e1;
+                     border-radius: 11px; font-family: inherit; }
+  textarea { min-height: 70px; }
+  .two { display: flex; gap: 10px; } .two > div { flex: 1; }
+  .err { color: #b3261e; font-size: 14px; margin-top: 10px; display: none; }
+  .foot { text-align: center; color: #8a94a1; font-size: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <img class="logo" src="../assets/harmony-labs-logo.png" alt="Harmony Labs logo">
+    <h1>Matthew Fuller</h1>
+    <p class="sub">Harmony Labs</p>
+    
+    <a class="btn primary" href="contact.vcf">Save Matt's Contact</a>
+    <div class="rows">
+      <a href="tel:+13307010697"><span>Call</span>330-701-0697</a>
+      <a href="sms:+13307010697"><span>Text</span>330-701-0697</a>
+      <a href="mailto:harmonylabsllc@gmail.com"><span>Email</span>harmonylabsllc@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="share">
+    <h2>Send Matt Your Info</h2>
+    <p class="hint">Fill this in and tap send. It opens a text to Matt with your details, so you're in each other's phones.</p>
+    <div class="two">
+      <div><label for="fn">First Name</label><input id="fn" autocomplete="given-name"></div>
+      <div><label for="ln">Last Name</label><input id="ln" autocomplete="family-name"></div>
+    </div>
+    <label for="ph">Phone</label><input id="ph" type="tel" autocomplete="tel">
+    <label for="em">Email</label><input id="em" type="email" autocomplete="email">
+    <label for="co">Company</label><input id="co" autocomplete="organization">
+    <label for="nt">Note (optional)</label><textarea id="nt" placeholder="Where we met, what you need..."></textarea>
+    <div class="err" id="err">Please add your name and a phone or email.</div>
+    <button class="btn primary" id="sendText" type="button">Text It to Matt</button>
+    <button class="btn secondary" id="sendEmail" type="button">Email It Instead</button>
+  </div>
+  <div class="foot">Digital card by Harmony Labs</div>
+</div>
+<script>
+  var TEXT_TO = "+13307010697";
+  var EMAIL_TO = "harmonylabsllc@gmail.com";
+  function v(id) { return document.getElementById(id).value.trim(); }
+  function message() {
+    var name = (v("fn") + " " + v("ln")).trim();
+    if (!name || (!v("ph") && !v("em"))) {
+      document.getElementById("err").style.display = "block";
+      return null;
+    }
+    document.getElementById("err").style.display = "none";
+    var m = ["New contact from your card:", "Name: " + name];
+    if (v("co")) m.push("Company: " + v("co"));
+    if (v("ph")) m.push("Phone: " + v("ph"));
+    if (v("em")) m.push("Email: " + v("em"));
+    if (v("nt")) m.push("Note: " + v("nt"));
+    return { name: name, body: m.join("\n") };
+  }
+  document.getElementById("sendText").onclick = function () {
+    var m = message(); if (!m) return;
+    window.location.href = "sms:" + TEXT_TO + "?body=" + encodeURIComponent(m.body);
+  };
+  var eb = document.getElementById("sendEmail");
+  if (eb) eb.onclick = function () {
+    var m = message(); if (!m) return;
+    window.location.href = "mailto:" + EMAIL_TO + "?subject=" +
+      encodeURIComponent("New contact: " + m.name) + "&body=" + encodeURIComponent(m.body);
+  };
+</script>
+</body>
+</html>
