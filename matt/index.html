@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Matthew Fuller | Harmony Labs</title>
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  :root { --dark: #082E53; --accent: #168DE2; }
+  :root { --dark: #082E53; --accent: #168DE2; --head: "Bebas Neue", Impact, "Arial Narrow", sans-serif; }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
          background: #f2f5f9; color: #1d2733; }
@@ -14,21 +17,21 @@
   .top { background: #fff; border-radius: 22px; padding: 30px 24px 26px; text-align: center;
           box-shadow: 0 6px 24px rgba(8, 46, 83, .10); }
   .logo { max-width: 78%; max-height: 90px; margin: 0 auto 18px; display: block; }
-  h1 { margin: 0; font-size: 30px; color: var(--dark); }
-  .sub { margin: 6px 0 0; color: var(--accent); font-size: 18px; font-weight: 600; }
+  h1 { margin: 0; font-family: var(--head); font-weight: 400; font-size: 54px; letter-spacing: .02em; line-height: 1; color: var(--dark); }
+  .sub { margin: 8px 0 0; color: var(--accent); font-family: var(--head); font-weight: 400; font-size: 24px; letter-spacing: .08em; }
   .tag { margin: 10px 0 0; color: #5b6573; font-size: 15px; }
-  .btn { display: block; width: 100%; padding: 16px; border: 0; border-radius: 14px;
-          font-size: 18px; font-weight: 700; text-align: center; text-decoration: none;
+  .btn { display: block; width: 100%; padding: 13px; border: 0; border-radius: 14px;
+          font-family: var(--head); font-size: 26px; font-weight: 400; letter-spacing: .06em; text-align: center; text-decoration: none;
           cursor: pointer; margin-top: 12px; }
   .primary { background: var(--dark); color: #fff; margin-top: 22px; }
   .secondary { background: #e8f2fc; color: var(--dark); }
   .rows { margin-top: 18px; text-align: left; }
   .rows a { display: flex; gap: 12px; align-items: center; padding: 12px 4px;
              border-top: 1px solid #edf0f4; color: #1d2733; text-decoration: none; font-size: 16px; }
-  .rows span { width: 64px; color: #5b6573; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  .rows span { width: 64px; color: #5b6573; font-family: var(--head); font-size: 17px; text-transform: uppercase; letter-spacing: .08em; }
   .share { background: #fff; border-radius: 22px; padding: 24px; margin-top: 18px;
             box-shadow: 0 6px 24px rgba(8, 46, 83, .10); }
-  h2 { margin: 0 0 4px; font-size: 21px; color: var(--dark); }
+  h2 { margin: 0 0 4px; font-family: var(--head); font-weight: 400; font-size: 32px; letter-spacing: .03em; color: var(--dark); }
   .hint { margin: 0 0 14px; color: #5b6573; font-size: 15px; }
   label { display: block; font-size: 14px; color: #5b6573; margin: 12px 0 4px; }
   input, textarea { width: 100%; padding: 13px; font-size: 17px; border: 1px solid #cfd7e1;
@@ -44,7 +47,7 @@
   <div class="top">
     <img class="logo" src="../assets/harmony-labs-logo.png" alt="Harmony Labs logo">
     <h1>Matthew Fuller</h1>
-    <p class="sub">Harmony Labs</p>
+    
     
     <a class="btn primary" href="contact.vcf">Save Matt's Contact</a>
     <div class="rows">
